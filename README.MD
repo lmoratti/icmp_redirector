@@ -3,9 +3,9 @@
 This tool is designed for educational and penetration testing purposes. It performs a simple ICMP redirect attack, which can manipulate the routing behavior of the target system by injecting false routing information. This attack can be used to redirect traffic through an attacker-controlled machine.
 
 ## Features
-    * ICMP Redirect: Sends ICMP redirect packets to the target machine to manipulate its routing table cache.
-    * Customizable: Allows specifying different IP addresses for target, destination, gateway, and attacker.
-    * Allows changing the ICMP Redirect Codes: Users can specify the ICMP redirect code to use, based on their needs.
+* ICMP Redirect: Sends ICMP redirect packets to the target machine to manipulate its routing table cache.
+* CLI Support: Allows specifying different IP addresses for target, destination, gateway, and attacker.
+* Includes helpful documentation in-line 
 
 ## Getting Started
 To install 
