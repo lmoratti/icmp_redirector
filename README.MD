@@ -1,6 +1,9 @@
 # ICMP Redirector
 
-This tool is designed for educational and penetration testing purposes. It performs a simple ICMP redirect attack, which can manipulate the routing behavior of the target system by injecting false routing information into the routing cache. Entries in the routing cache overwrite those in the routing table, until the entries expire. This attack can be used to redirect traffic through an attacker-controlled machine.
+This tool is designed for educational and penetration testing purposes. It performs a simple ICMP redirect attack. This attack can be used to redirect traffic through an attacker-controlled machine.
+
+ICMP redirects can manipulate the routing behavior of the target system by injecting routing information into the routing cache. Entries in the routing cache overwrite those in the routing table, until the entries expire. To be more specific, we are adding to the "FIB Nexthop Exception Cache". This is an important distinction because Linux prior to Kernel version 3.6 contained a routing cache which was deprecated for performance reasons. MacOS and Windows are opaque harder to experiment/speculate on.
+
 
 ## Features
 * Sends ICMP redirect packets to the target machine to manipulate its routing table cache.
@@ -62,7 +65,9 @@ To perform an ICMP redirect attack where the target 192.168.1.2 is tricked into 
     * http://blog.packetheader.net/2010/06/better-spoofing-of-icmp-host-redirect.html
 * ICMP (RFC 792) 
     * https://datatracker.ietf.org/doc/html/rfc792
-* 
+* SEED Labs – ICMP Redirect Attack Lab
     * https://seedsecuritylabs.org/Labs_20.04/Files/ICMP_Redirect/ICMP_Redirect.pdf
+* Routing Decisions in the Linux Kernel - Part 2: Caching
+    * https://thermalcircle.de/doku.php?id=blog:linux:routing_decisions_in_the_linux_kernel_2_caching#fib_nexthop_exception_caching
 ## License
 This tool is provided under the MIT License. See the LICENSE file for details.
