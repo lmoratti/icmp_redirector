@@ -1,11 +1,34 @@
 # ICMP Redirector
 
-This tool is designed for educational and penetration testing purposes. It performs a simple ICMP redirect attack, which can manipulate the routing behavior of the target system by injecting false routing information. This attack can be used to redirect traffic through an attacker-controlled machine.
+This tool is designed for educational and penetration testing purposes. It performs a simple ICMP redirect attack, which can manipulate the routing behavior of the target system by injecting false routing information into the routing cache. Entries in the routing cache overwrite those in the routing table, until the entries expire. This attack can be used to redirect traffic through an attacker-controlled machine.
 
 ## Features
-* ICMP Redirect: Sends ICMP redirect packets to the target machine to manipulate its routing table cache.
-* CLI Support: Allows specifying different IP addresses for target, destination, gateway, and attacker.
+* Sends ICMP redirect packets to the target machine to manipulate its routing table cache.
+* CLI Support for pentesting & scripting
 * Includes helpful documentation in-line 
+
+## Known protections against ICMP Redirection
+    If we spoof redirect packets, but the victim machine has not sent out ICMP packets during the attack, the attack will never be successful. This is because the OS kernel conducts some kind of sanity check before accepting an ICMP redirect packets.
+        - SEED Labs – ICMP Redirect Attack Lab
+
+### Known OS Kernel Sanity Checks
+    ... the OS kernel conducts some kind of sanity check before accepting an ICMP redirect packets. It verifies whether the ICMP redirect is triggered by [a] packet it sent out ... How strictly the checking is conducted depends on the OS.
+       - SEED Labs – ICMP Redirect Attack Lab
+
+This checking is more easily bypassed by sniffing for ICMP traffic and then copying an authentic ICMP packets information. 
+
+* Ubuntu 20.04 
+    * The operating system verifies that in the Internet Host header inside the ICMP payload matches the type and the destination IP address of the original packet that triggers the ICMP redirect.
+
+* Ubuntu 22.04 
+    * The checking is more strict. The ways it is more strict is unknown.
+
+* Windows 
+    * Unknown. Please add sources if you are aware of the behavior or research it yourself.
+
+* MacOS 
+    * Unknown. Please add sources if you are aware of the behavior or research it yourself.
+
 
 ## Getting Started
 To install 
@@ -39,6 +62,7 @@ To perform an ICMP redirect attack where the target 192.168.1.2 is tricked into 
     * http://blog.packetheader.net/2010/06/better-spoofing-of-icmp-host-redirect.html
 * ICMP (RFC 792) 
     * https://datatracker.ietf.org/doc/html/rfc792
-
+* 
+    * https://seedsecuritylabs.org/Labs_20.04/Files/ICMP_Redirect/ICMP_Redirect.pdf
 ## License
 This tool is provided under the MIT License. See the LICENSE file for details.
