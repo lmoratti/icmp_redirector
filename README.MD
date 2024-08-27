@@ -35,10 +35,10 @@ To perform an ICMP redirect attack where the target 192.168.1.2 is tricked into 
 ```python3 icmp_redirect_tool.py --target 192.168.1.2 --destination 192.168.1.100 --gateway 192.168.1.1 --attacker 192.168.1.3```
 
 ## References
-Better spoofing of ICMP host redirect messages with Scapy 
-    http://blog.packetheader.net/2010/06/better-spoofing-of-icmp-host-redirect.html
-ICMP (RFC 792) 
-    https://datatracker.ietf.org/doc/html/rfc792
+* Better spoofing of ICMP host redirect messages with Scapy 
+    * http://blog.packetheader.net/2010/06/better-spoofing-of-icmp-host-redirect.html
+* ICMP (RFC 792) 
+    * https://datatracker.ietf.org/doc/html/rfc792
 
 ## License
 This tool is provided under the MIT License. See the LICENSE file for details.
