@@ -14,7 +14,7 @@ To install
 
 Usage
 
-```python3 icmp_redirect_tool.py --target <target_ip> --destination <destination_ip> --gateway <gateway_ip> --attacker <attacker_ip> [--redirect_code <code>] ``` 
+```python3 icmp_redirect.py --target <target_ip> --destination <destination_ip> --gateway <gateway_ip> --attacker <attacker_ip> [--redirect_code <code>] ``` 
 
 ### Parameters
     --target:        The IP address of the target who should add the routing table cache entry.
@@ -32,7 +32,7 @@ Usage
 ## Example
 To perform an ICMP redirect attack where the target 192.168.1.2 is tricked into routing packets destined for 192.168.1.100 through the attacker 192.168.1.3 using 192.168.1.1 as the gateway:
 
-```python3 icmp_redirect_tool.py --target 192.168.1.2 --destination 192.168.1.100 --gateway 192.168.1.1 --attacker 192.168.1.3```
+```python3 icmp_redirect.py --target 192.168.1.2 --destination 192.168.1.100 --gateway 192.168.1.1 --attacker 192.168.1.3```
 
 ## References
 * Better spoofing of ICMP host redirect messages with Scapy 
